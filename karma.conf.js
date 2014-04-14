@@ -12,7 +12,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/client/test-bootstrap.js', {
+      'test/test-bootstrap.js', {
         pattern: 'app/bower_components/angular/angular.js',
         included: false
       }, {
@@ -37,7 +37,7 @@ module.exports = function(config) {
         pattern: 'app/scripts/**/*.js',
         included: false
       }, {
-        pattern: 'test/client/**/*.js',
+        pattern: 'test/**/*.js',
         included: false
       },
     ],
@@ -77,7 +77,7 @@ module.exports = function(config) {
     //configure coverage reporter
     coverageReporter: {
       type: 'lcov',
-      dir: 'coverage/client'
+      dir: 'coverage'
     },
 
     // Continuous Integration mode

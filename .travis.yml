@@ -7,6 +7,6 @@ install:
   - 'npm install'
 before_script:
   - 'bower install'
-  - 'grunt'
+  - 'grunt --force'
 script:
   - 'grunt coveralls'
