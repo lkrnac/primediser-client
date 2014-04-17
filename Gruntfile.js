@@ -26,11 +26,6 @@ module.exports = function (grunt) {
       test: 'test',
       coverage: 'coverage'
     },
-    open: {
-      server: {
-        url: 'http://localhost:<%= express.options.port %>'
-      }
-    },
     watch: {
       jsClient: {
         files: ['<%= directory.app %>/scripts/{,*/}*.js'],
@@ -55,13 +50,13 @@ module.exports = function (grunt) {
           '<%= directory.app %>/views/{,*//*}*.{html,jade}',
           '{.tmp,<%= directory.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= directory.app %>}/scripts/{,*//*}*.js',
-          '<%= directory.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= directory.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
 
         options: {
           livereload: true
         }
-      },
+      }
     },
 
     //    // The actual grunt server settings
@@ -166,7 +161,8 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: ['<%= directory.app %>/views/index.html',
+      html: [
+        '<%= directory.app %>/views/index.html',
         '<%= directory.app %>/views/index.jade'
       ],
       options: {
@@ -281,22 +277,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Run some tasks in parallel to speed up the build process
-    concurrent: {
-      server: [
-        'copy:styles'
-      ],
-      test: [
-        'copy:styles'
-      ],
-      dist: [
-        'copy:styles',
-        'imagemin',
-        'svgmin',
-        'htmlmin'
-      ]
-    },
-
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
@@ -365,7 +345,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test', [
-    'concurrent:test',
+    'copy:styles',
     'autoprefixer',
     'karma:unit',
     'coveralls'
@@ -374,7 +354,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'useminPrepare',
-    'concurrent:dist',
+    'copy:styles',
+    'imagemin',
+    'svgmin',
+    'htmlmin',
     'autoprefixer',
     'concat',
     'ngmin',
