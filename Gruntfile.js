@@ -1,4 +1,6 @@
 // Generated on 2014-03-24 using generator-angular-fullstack 1.3.2
+
+// jshint node: true
 'use strict';
 
 // # Globbing
@@ -30,9 +32,9 @@ module.exports = function (grunt) {
       jsClient: {
         files: ['<%= directory.app %>/scripts/{,*/}*.js'],
         tasks: ['karma:unit'],
-        //        options: {
-        //          livereload: true
-        //        }
+        options: {
+          livereload: true
+        }
       },
       jsTest: {
         files: ['<%= directory.test %>/spec/{,*/}*.js'],
@@ -97,16 +99,17 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+        ignore: '<%= directory.app %>/bower_components/**',
       },
       all: [
-        '<%= directory.app %>/scripts/{,*/}*.js'
+        '<%= directory.app %>/scripts/**/*.js'
       ],
       test: {
         options: {
           jshintrc: '<%= directory.test %>/.jshintrc'
         },
-        src: ['<%= directory.test %>/spec/{,*/}*.js']
+        src: ['<%= directory.test %>/spec/**/*.js']
       }
     },
 
@@ -150,7 +153,8 @@ module.exports = function (grunt) {
           src: [
             '<%= directory.dist %>/public/scripts/{,*/}*.js',
             '<%= directory.dist %>/public/styles/{,*/}*.css',
-            '<%= directory.dist %>/public/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= directory.dist %>/public/images/{,*/}' +
+              '*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= directory.dist %>/public/styles/fonts/*'
           ]
         }
@@ -313,8 +317,9 @@ module.exports = function (grunt) {
           modules: [{
             name: 'bootstrap'
           }],
-
-          mainConfigFile: '<%= directory.app %>/scripts/bootstrap.js', // contains path specifications and nothing else important with respect to config
+          // contains path specifications and nothing else important 
+          // with respect to config
+          mainConfigFile: '<%= directory.app %>/scripts/bootstrap.js',
           dir: '<%= directory.dist %>/public/scripts',
           baseUrl: '<%= directory.app %>/scripts',
           useStrict: true,
