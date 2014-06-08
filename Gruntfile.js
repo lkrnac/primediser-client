@@ -24,7 +24,7 @@ module.exports = function (grunt) {
     directory: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist',
+      dist: 'dist/app',
       test: 'test',
       coverage: 'coverage'
     },
@@ -151,11 +151,11 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= directory.dist %>/public/scripts/{,*/}*.js',
-            '<%= directory.dist %>/public/styles/{,*/}*.css',
-            '<%= directory.dist %>/public/images/{,*/}' +
+            '<%= directory.dist %>/scripts/{,*/}*.js',
+            '<%= directory.dist %>/styles/{,*/}*.css',
+            '<%= directory.dist %>/images/{,*/}' +
               '*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= directory.dist %>/public/styles/fonts/*'
+            '<%= directory.dist %>/styles/fonts/*'
           ]
         }
       }
@@ -170,7 +170,7 @@ module.exports = function (grunt) {
         '<%= directory.app %>/views/index.jade'
       ],
       options: {
-        dest: '<%= directory.dist %>/public'
+        dest: '<%= directory.dist %>'
       }
     },
 
@@ -179,9 +179,9 @@ module.exports = function (grunt) {
       html: ['<%= directory.dist %>/views/{,*/}*.html',
         '<%= directory.dist %>/views/{,*/}*.jade'
       ],
-      css: ['<%= directory.dist %>/public/styles/{,*/}*.css'],
+      css: ['<%= directory.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= directory.dist %>/public']
+        assetsDirs: ['<%= directory.dist %>']
       }
     },
 
@@ -192,7 +192,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= directory.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= directory.dist %>/public/images'
+          dest: '<%= directory.dist %>/images'
         }]
       }
     },
@@ -203,7 +203,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= directory.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%= directory.dist %>/public/images'
+          dest: '<%= directory.dist %>/images'
         }]
       }
     },
@@ -252,7 +252,7 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%= directory.app %>',
-          dest: '<%= directory.dist %>/public',
+          dest: '<%= directory.dist %>',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
@@ -269,7 +269,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= directory.dist %>/public/images',
+          dest: '<%= directory.dist %>/images',
           src: ['generated/*']
         }]
       },
@@ -320,7 +320,7 @@ module.exports = function (grunt) {
           // contains path specifications and nothing else important 
           // with respect to config
           mainConfigFile: '<%= directory.app %>/scripts/bootstrap.js',
-          dir: '<%= directory.dist %>/public/scripts',
+          dir: '<%= directory.dist %>/scripts',
           baseUrl: '<%= directory.app %>/scripts',
           useStrict: true,
           removeCombined: true
