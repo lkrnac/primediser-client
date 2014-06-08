@@ -116,18 +116,13 @@ module.exports = function (grunt) {
     // Empties folders to start fresh
     clean: {
       dist: {
-        files: [{
-          dot: true,
-          src: [
+        src: [
             '.tmp',
-            '<%= directory.dist %>/*',
-            '!<%= directory.dist %>/.git*',
-            '!<%= directory.dist %>/Procfile'
-          ]
-        }]
+            '<%= directory.dist %>'
+        ]
       },
       coverage: {
-        src: ['<%= directory.coverage %>/'],
+        src: ['<%= directory.coverage %>'],
       }
     },
 
