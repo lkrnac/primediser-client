@@ -3,13 +3,13 @@ define(['angular', 'controllers/main', 'controllers/navbar'],
     'use strict';
 
     return angular.module('primediser', [
-    'primediser.controllers.MainCtrl',
-    'primediser.controllers.NavbarCtrl',
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute'
-  ])
+        'primediser.controllers.MainCtrl',
+        'primediser.controllers.NavbarCtrl',
+        'ngCookies',
+        'ngResource',
+        'ngSanitize',
+        'ngRoute'
+      ])
       .config(['$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
           $routeProvider
